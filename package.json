@@ -1,12 +1,13 @@
 {
   "name": "cyan-bird",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/main.js",
   "license": "MIT",
+  
   "scripts": {
     "start": "npm run build:live",
     "build": "tsc -p .",
-    "build:live": "nodemon --watch src/**/*.ts --exec ts-node src/index.ts"
+    "build:live": "nodemon --watch src/**/*.ts --exec ts-node src/main.ts"
   },
   "devDependencies": {
     "@types/node": "^17.0.33",
