@@ -1,10 +1,11 @@
 import { Heartbeat, Router, Publisher } from './server';
 import { Message } from './message'
+import { Ports } from './utils'
 
 
 
-
-const local = '127.0.0.1';
+// const local = '127.0.0.1';
+const local = '0.0.0.0';
 /**
  * 
  * 端口定义
@@ -17,18 +18,17 @@ const local = '127.0.0.1';
 const hosts = {
     "heartbeat": {
         host: local,
-        port: 7770
+        port: Ports["heartbeat"]
     },
     "publisher": {
         host: local,
-        port: 7777
+        port: Ports["publisher"]
     },
     "forwarding": {
         host: local,
-        port: 7773
+        port: Ports["forwarding"]
     }
 }
-
 
 function main() {
 
@@ -59,3 +59,31 @@ function main() {
     
 }
 main();
+
+
+
+
+
+
+
+/**
+ * 
+ * 
+ * 第一版功能
+ * 心跳和转发事件
+ * 
+ * 
+ * 
+ */
+
+/**
+ * 
+ *  模式
+ *  router to router 
+ * 
+ * 
+ */
+
+
+
+

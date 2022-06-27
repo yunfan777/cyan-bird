@@ -81,16 +81,13 @@ export class Heartbeat extends Server {
     constructor(props: any) {
         super(props);
         this.sock = this.getNewZmq("Reply") as zeromq.Reply;
-        this.callback = () => {};
     }
 
     async run() {
         const self = this;
         const sock = self.sock;
-        const { protocol, host, port } = self.host;
-        const address = `${protocol}://${host}:${port}`;
-        await sock.bind(address);
-        console.log('heartbeat:  ' + address);
+        await sock.bind(self.address);
+        console.log('bind heartbeat:  ' + self.address);
         for await (const [msg] of sock) {
             self.callback({
                 origin: '127.0.0.1',
@@ -129,7 +126,6 @@ export class Router extends Server {
         receive();
     }
 }
-
 
 export class Publisher extends Server {
     sock: zeromq.Publisher
