@@ -1,7 +1,5 @@
 import Connection from "./connection";
 
-const host = "192.168.0.101";
-
 /**
  * 默认保持心跳，更新状态
  *
@@ -11,10 +9,28 @@ const host = "192.168.0.101";
  *
  */
 
-function main() {
-  const conn = new Connection({
-    host: host,
-  });
-  conn.on("event-name", (command) => {});
+type Config = {
+  host: string;
+};
+type ConnState = 0 | 1 | 2 | 3;
+export default class Client {
+  config: Config;
+  #connState: ConnState;
+
+  constructor(config: Config) {
+    this.config = config;
+    this.#connState = 0;
+  }
+
+  conn() {
+    const host = this.config.host;
+    const conn = new Connection({
+      host: host,
+    });
+    this.#connState = 0;
+    conn.on("event-name", (command) => {});
+  }
+  onclose() {}
+  onerror() {}
+  onmessage() {}
 }
-main();
