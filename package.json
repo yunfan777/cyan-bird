@@ -19,6 +19,7 @@
   "dependencies": {
     "@types/ip-address": "^7.0.0",
     "ip-address": "^8.1.0",
+    "log4js": "^6.7.1",
     "zeromq": "6.0.0-beta.6"
   }
 }
